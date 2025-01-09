@@ -20,7 +20,7 @@ export class RegisterComponent {
 
   // Inicialización de formulario de registro
   formularioRegistro = new FormGroup({
-    nombre: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
@@ -36,7 +36,7 @@ export class RegisterComponent {
     if (this.formularioLogin.valid) {
       const credenciales = this.formularioLogin.value;
 
-      this.http.post('http://localhost:9000/users/', credenciales).subscribe({
+      this.http.post('http://localhost:9000/users/login', credenciales).subscribe({
         next: (response: any) => {
           localStorage.setItem('token', response.token);
           this.toastr.success('Inicio de sesión exitoso');
